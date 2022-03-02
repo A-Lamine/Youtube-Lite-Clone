@@ -1,35 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/ydays.css') }}">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <header class="header">
-    <a href="#">
-      <img src="../static/img/ydays-logo.svg" alt="YouTube Logo" class="youtube-logo" />
-    </a>
-    <form class="search-bar">
-      <input class="search-input" type="search" placeholder="Search" aria-label="Search" />
-      <button type="submit" class="search-btn">
-        <img src="../static/img/search.svg" />
-      </button>
-    </form>
-    <div class="menu-icons">
-      <a href="#">
-        <img src="../static/img/video.svg" alt="Upload Video" />
-      </a>
+{% extends 'base.html' %}
 
-      <a href="logout">
-        <img class="menu-channel-icon" src="../static/img/logout.svg" alt="Logout" />
-      </a>
-    </div>
-  </header>
+
+
+
+{% block title %} Home {% endblock %}
+
+
+
+{% block body %}
+
+
   <div class="categories">
     <section class="category-section">
       <button class="category active">All</button>
@@ -52,15 +32,16 @@
       </h2>
       {% for row in video %}
       <article class="video-container">
-        <a href="#" class="thumbnail" data-duration="12:24">
-          <img class="thumbnail-image" src="{{row.img}}" />
-        </a>
+        
+         
+          <iframe width="1004" height="565" src="{{row.url}}" class="thumbnail-image" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
         <div class="video-bottom-section">
           <a href="#">
             <img class="channel-icon" src="http://unsplash.it/36/36?gravity=center" />
           </a>
           <div class="video-details">
-            <a href="#" class="video-title">Video Title</a>
+            <a href="#" class="video-title">{{row.title}}</a>
             <a href="#" class="video-channel-name">Channel Name</a>
             <div class="video-metadata">
               <span>12K views</span>
@@ -74,5 +55,6 @@
 
     </section>
   </div>
-</body>
-</html>
+  
+
+  {% endblock %}
