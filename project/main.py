@@ -7,17 +7,17 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.py')
 
 @main.route('/ydays')
 def ydays():
     data = Video.query.all()
-    return render_template('ydays.html',video = data)
+    return render_template('ydays.py',video = data)
 
 @main.route('/test')
 def test():
     data = Video.query.all()
-    return render_template('test.html', video = data)
+    return render_template('test.py', video = data)
 
 
 #Movies Manage
@@ -28,7 +28,7 @@ def test():
 def movie():
     all_data = Video.query.all()
  
-    return render_template("movies.html", movies = all_data)
+    return render_template("movies.py", movies = all_data)
  
  
  
