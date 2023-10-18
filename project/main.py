@@ -1,23 +1,24 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from flask_login import login_required, current_user
+from flask_login import login_required
 from . import db
 from .models import Video
+
 
 main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.py')
+    return render_template('index.html')
 
 @main.route('/ydays')
 def ydays():
     data = Video.query.all()
-    return render_template('ydays.py',video = data)
+    return render_template('ydays.html',video = data)
 
 @main.route('/test')
 def test():
     data = Video.query.all()
-    return render_template('test.py', video = data)
+    return render_template('test.html', video = data)
 
 
 #Movies Manage
@@ -28,11 +29,11 @@ def test():
 def movie():
     all_data = Video.query.all()
  
-    return render_template("movies.py", movies = all_data)
+    return render_template("movies.html", movies = all_data)
  
  
  
-#this route is for inserting data to mysql database via html forms
+
 @main.route('/insert', methods = ['POST'])
 @login_required
 def insert():
@@ -51,7 +52,7 @@ def insert():
         return redirect(url_for('main.movie'))
  
  
-#this is our update route where we are going to update our employee
+
 @main.route('/update', methods = ['GET', 'POST'])
 @login_required
 def update():
@@ -71,7 +72,7 @@ def update():
  
  
  
-#This route is for deleting our employee
+
 @main.route('/delete/<id>/', methods = ['GET', 'POST'])
 @login_required
 def delete(id):
